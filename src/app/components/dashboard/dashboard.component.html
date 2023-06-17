@@ -1,0 +1,45 @@
+<div class="tableContainer">
+  <nav class="navbar" [formGroup]="searchForm">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Search by name, email, phone ..."
+      name="searchVal"
+      formControlName="searchVal"
+      (ngModelChange)="search()"
+    />
+  </nav>
+
+  <table
+    id="dtBasicExample"
+    class="table table-striped table-bordered"
+    width="100%"
+  >
+    <thead>
+      <tr>
+        <th class="th-sm">Name</th>
+        <th class="th-sm">Email</th>
+        <th class="th-sm">Phone</th>
+        <th class="th-sm">Age</th>
+        <th class="th-sm">ity</th>
+        <th class="th-sm">State</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let user of users | paginate : { itemsPerPage: 10, currentPage: page }
+        "
+      >
+        <td>{{ user["firstName"] + " " + user["lastName"] }}</td>
+        <td>{{ user["email"] }}</td>
+        <td>{{ user["phone"] }}</td>
+        <td>{{ user["age"] }}</td>
+        <td>{{ user["address"]["city"] || "" }}</td>
+        <td>{{ user["address"]["state"] || "" }}</td>
+      </tr>
+    </tbody>
+
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </table>
+</div>

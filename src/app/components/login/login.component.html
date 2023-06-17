@@ -1,0 +1,60 @@
+<div id="container" class="container mt-5" [formGroup]="form">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="card px-5 py-5" id="form1">
+        <div class="form-data" v-if="!submitted">
+          <div class="forms-inputs mb-4">
+            <span>Email</span>
+            <input
+              class="w-100 rounderBorder"
+              type="text"
+              name="email"
+              formControlName="email"
+            />
+            <div
+              *ngIf="
+                form.controls['email'].invalid &&
+                (form.controls['email'].dirty || form.controls['email'].touched)
+              "
+              class="alert alert-danger errorMsg"
+            >
+              A valid email is required!
+            </div>
+          </div>
+          <div class="forms-inputs mb-4">
+            <span>Password</span>
+            <input
+              class="w-100 rounderBorder"
+              autocomplete="off"
+              type="password"
+              name="password"
+              id="password"
+              formControlName="password"
+            />
+            <div
+              *ngIf="
+                form.controls['password'].invalid &&
+                (form.controls['password'].dirty ||
+                  form.controls['password'].touched)
+              "
+              class="alert alert-danger errorMsg"
+            >
+              Password must be 8 character!
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <button
+              class="btn btn-dark w-100"
+              (click)="onLogin()"
+              [disabled]="!form.valid"
+            >
+              Login
+            </button>
+          </div>
+          <!-- {{ form.value | json }} -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
